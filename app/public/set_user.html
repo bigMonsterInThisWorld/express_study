@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>注册账号</h1>
+用户名：<input type="text" name="user" placeholder="用户账户">
+密码：<input type="password" name="psd" placeholder="密码">
+密码确认：<input type="password" name="psd_sure" placeholder="密码确认">
+<div id="sure">创建账号</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    $('#sure').click(function () {
+        let user = $('input[name = user]').val();
+        let psd = $('input[name = psd]').val();
+
+        $.ajax({
+            url : 'http://127.0.1.1:3000/setUser',
+            type : 'post',
+            data : {
+                user,
+                psd
+            },
+            dataType : 'JSON',
+            success : (res)=>{
+                console.log(res);
+                console.log(typeof res);
+            },
+            error : (err)=>{
+                console.log(err);
+            }
+
+        });
+    });
+</script>
+</body>
+</html>
